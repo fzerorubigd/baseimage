@@ -1,4 +1,4 @@
-NAME = phusion/baseimage
+NAME = helium/baseimage
 VERSION = 0.9.22
 
 .PHONY: all build test tag_latest release ssh
@@ -7,6 +7,7 @@ all: build
 
 build:
 	docker build -t $(NAME):$(VERSION) --rm image
+	docker tag $(NAME):$(VERSION) $(NAME):latest
 
 test:
 	env NAME=$(NAME) VERSION=$(VERSION) ./test/runner.sh
