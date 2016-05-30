@@ -11,11 +11,6 @@ $minimal_apt_get_install wget curl sudo git zsh nano libsqlite3-dev autoconf bis
 
 
 GOBIN=/usr/local/bin GOPATH=/tmp go get -v -u github.com/mailhog/MailHog
-cd /tmp
-git clone https://github.com/fzerorubigd/tmass.git
-cd tmass
-make all
-cp bin/tmass /usr/local/bin
 
 # Create vagrant user
 bash -c "echo root:bita123 | chpasswd"
