@@ -6,11 +6,12 @@ apt-get update
 $minimal_apt_get_install wget curl sudo git zsh nano libsqlite3-dev autoconf bison build-essential libssl-dev \
                 libyaml-dev libreadline6 libreadline6-dev zlib1g zlib1g-dev htop redis-server postgresql mercurial \
                 ruby-dev rabbitmq-server realpath pkg-config unzip dnsutils re2c python-pip \
-                python-dev libpq-dev tmux bzr libsodium-dev cmake default-jdk golang
-
-
+                python-dev libpq-dev tmux bzr libsodium-dev cmake default-jdk golang python-setuptools
 
 GOBIN=/usr/local/bin GOPATH=/tmp go get -v -u github.com/mailhog/MailHog
+pip install --upgrade --no-cache-dir pip
+pip install --no-cache-dir pgcli
+
 
 # Create vagrant user
 bash -c "echo root:bita123 | chpasswd"
