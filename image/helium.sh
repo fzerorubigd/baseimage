@@ -11,7 +11,7 @@ curl -sL https://deb.nodesource.com/setup_7.x | bash -
 $minimal_apt_get_install wget curl sudo git zsh nano libsqlite3-dev autoconf bison build-essential libssl-dev \
                 libyaml-dev libreadline6 libreadline6-dev zlib1g zlib1g-dev htop redis-server postgresql mercurial \
                 ruby-dev realpath pkg-config unzip dnsutils re2c python-pip nodejs  \
-                python-dev libpq-dev tmux bzr libsodium-dev cmake default-jdk golang python-setuptools
+                python-dev libpq-dev tmux bzr libsodium-dev cmake default-jdk python-setuptools
 
 GOBIN=/usr/local/bin GOPATH=/tmp go get -v -u github.com/mailhog/MailHog
 pip install --upgrade --no-cache-dir pip
