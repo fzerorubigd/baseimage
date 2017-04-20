@@ -2,18 +2,24 @@
 set -euo pipefail
 source /bd_build/buildconfig
 
-apt-get update
+# Install golang
 cd /tmp
 curl https://godeb.s3.amazonaws.com/godeb-amd64.tar.gz | gunzip | tar xvf -
 /tmp/godeb install 1.8.1
-curl -sL https://deb.nodesource.com/setup_7.x | bash -
+
+# Add sun-java repo
 add-apt-repository ppa:webupd8team/java
 
+# Add cassandra repo
 echo "deb http://www.apache.org/dist/cassandra/debian 310x main" > /etc/apt/sources.list.d/cassandra.sources.list
 apt-key adv --keyserver pool.sks-keyservers.net --recv-key A278B781FE4B2BDA
 
+# Add elastic search
 curl https://artifacts.elastic.co/GPG-KEY-elasticsearch | apt-key add -
 echo "deb https://artifacts.elastic.co/packages/5.x/apt stable main" >/etc/apt/sources.list.d/elastic-5.x.list
+
+# Add node 7, also this do an apt update too
+curl -sL https://deb.nodesource.com/setup_7.x | bash -
 
 echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections
 echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections
