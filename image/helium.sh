@@ -5,13 +5,25 @@ source /bd_build/buildconfig
 apt-get update
 cd /tmp
 curl https://godeb.s3.amazonaws.com/godeb-amd64.tar.gz | gunzip | tar xvf -
-/tmp/godeb install 1.8
+/tmp/godeb install 1.8.1
 curl -sL https://deb.nodesource.com/setup_7.x | bash -
+add-apt-repository ppa:webupd8team/java
+
+echo "deb http://www.apache.org/dist/cassandra/debian 310x main" > /etc/apt/sources.list.d/cassandra.sources.list
+apt-key adv --keyserver pool.sks-keyservers.net --recv-key A278B781FE4B2BDA
+
+curl https://artifacts.elastic.co/GPG-KEY-elasticsearch | apt-key add -
+echo "deb https://artifacts.elastic.co/packages/5.x/apt stable main" >/etc/apt/sources.list.d/elastic-5.x.list
+
+echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections
+echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections
+
 
 $minimal_apt_get_install wget curl sudo git zsh nano libsqlite3-dev autoconf bison build-essential libssl-dev \
                 libyaml-dev libreadline6 libreadline6-dev zlib1g zlib1g-dev htop redis-server postgresql mercurial \
-                ruby-dev realpath pkg-config unzip dnsutils re2c python-pip nodejs  \
-                python-dev libpq-dev tmux bzr libsodium-dev cmake default-jdk python-setuptools
+                ruby-dev realpath pkg-config unzip dnsutils re2c python-pip oracle-java8-set-default nodejs  \
+                python-dev libpq-dev tmux bzr libsodium-dev cmake python-setuptools iputils-ping iproute2 \
+                cassandra elasticsearch
 
 GOBIN=/usr/local/bin GOPATH=/tmp go get -v -u github.com/mailhog/MailHog
 pip install --upgrade --no-cache-dir pip
